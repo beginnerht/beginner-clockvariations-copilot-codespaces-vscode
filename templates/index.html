@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Variations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>&#9749; CLOCK VARIATIONS</h1>
+    <div id="tz-bar">
+        <label for="tz-select">Timezone:</label>
+        <select id="tz-select">
+            {% for tz in timezones %}
+            <option value="{{ tz }}">{{ tz }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</header>
+
+<div id="switcher">
+    <div id="design-buttons">
+        <button class="design-btn" data-design="digital">Digital</button>
+        <button class="design-btn" data-design="analog">Analog</button>
+        <button class="design-btn" data-design="loading-bar">Loading Bar</button>
+        <button class="design-btn" data-design="sundial">Sundial</button>
+        <button class="design-btn" data-design="led">LED</button>
+        <button class="design-btn" data-design="planet">Planet</button>
+        <button class="design-btn" data-design="sun">Sun</button>
+        <button class="design-btn" data-design="moon">Moon</button>
+        <button class="design-btn" data-design="timezone">World Clocks</button>
+    </div>
+    <div id="type-input-wrap">
+        <input id="type-input" type="text" placeholder="Type a design name &amp; press Enter&hellip;" autocomplete="off">
+        <span id="type-hint">e.g. digital, analog, led, planet, moon, sun, sundial, timezone</span>
+    </div>
+</div>
+
+<main id="clock-stage">
+
+    <!-- 1. Digital -->
+    <section class="clock-panel" id="panel-digital">
+        <div id="digital-display">00:00:00</div>
+        <div id="digital-date"></div>
+        <div id="digital-tz"></div>
+    </section>
+
+    <!-- 2. Analog -->
+    <section class="clock-panel" id="panel-analog">
+        <canvas id="canvas-analog" width="420" height="420"></canvas>
+    </section>
+
+    <!-- 3. Loading bar -->
+    <section class="clock-panel" id="panel-loading-bar">
+        <div id="loadbar-time">00:00:00</div>
+        <div id="loadbar-label">Day Progress</div>
+        <div id="loadbar-wrap">
+            <div id="loadbar-fill" style="width:0%"></div>
+        </div>
+        <div id="loadbar-pct">0.00% of day elapsed</div>
+    </section>
+
+    <!-- 4. Sundial -->
+    <section class="clock-panel" id="panel-sundial">
+        <canvas id="canvas-sundial" width="500" height="340"></canvas>
+    </section>
+
+    <!-- 5. LED -->
+    <section class="clock-panel" id="panel-led">
+        <canvas id="canvas-led" width="520" height="150"></canvas>
+    </section>
+
+    <!-- 6. Planet -->
+    <section class="clock-panel" id="panel-planet">
+        <canvas id="canvas-planet" width="480" height="380"></canvas>
+    </section>
+
+    <!-- 7. Sun -->
+    <section class="clock-panel" id="panel-sun">
+        <canvas id="canvas-sun" width="480" height="380"></canvas>
+    </section>
+
+    <!-- 8. Moon -->
+    <section class="clock-panel" id="panel-moon">
+        <canvas id="canvas-moon" width="480" height="380"></canvas>
+    </section>
+
+    <!-- 9. Timezone grid -->
+    <section class="clock-panel" id="panel-timezone">
+        <h2 style="font-size:1rem;color:var(--muted);letter-spacing:2px;">WORLD CLOCKS</h2>
+        <div id="tz-clocks-grid"></div>
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/clock.js') }}"></script>
+</body>
+</html>
